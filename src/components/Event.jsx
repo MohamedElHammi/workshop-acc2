@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 export default function Event(props) {
   const [event, setEvent] = useState(props.event);
@@ -32,7 +32,7 @@ export default function Event(props) {
           src={`/images/${!!event.nbTickets ? event.img : "sold_out.png"}`}
         />
         <Card.Body>
-          <NavLink to={`${event.name}`}>
+          <NavLink to={`${event.id}`}>
             <Card.Title>{event.name}</Card.Title>
           </NavLink>
           <Card.Text>Price : {event.price}</Card.Text>
@@ -49,6 +49,17 @@ export default function Event(props) {
             className="mx-5"
           >
             Buy
+          </Button>
+          <Button variant="success" className="mx-5">
+            <Link
+              to={`/events/update/${event.id}`}
+              style={{ textDecoration: "none", color: "white" }}
+            >
+              Update
+            </Link>
+          </Button>
+          <Button variant="danger" onClick={() => props.onDelete(event.id)}>
+            Delete
           </Button>
         </Card.Body>
       </Card>

@@ -20,6 +20,13 @@ export default function NavigationBar() {
           >
             Events
           </Nav.Link>
+          <Nav.Link
+            as={NavLink}
+            to="/events/add"
+            style={({ isActive }) => (!isActive ? active : undefined)}
+          >
+            Add New Event
+          </Nav.Link>
         </Nav>
       </Container>
     </Navbar>
