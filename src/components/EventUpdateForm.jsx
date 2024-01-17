@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import { editEvent, getallEvents } from "../services/api";
+import { useDispatch } from "react-redux";
+import { updateEventReducer } from "../redux/slices/eventsSlice";
 
 export default function EventUpdateForm() {
   const navigate = useNavigate();
@@ -15,6 +17,7 @@ export default function EventUpdateForm() {
     nbParticipants: 0,
     like: 0,
   });
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchEvent = async () => {
@@ -33,6 +36,7 @@ export default function EventUpdateForm() {
 
   const updateEvent = async () => {
     const eventResult = await editEvent(param.id, eventItem);
+    dispatch(updateEventReducer(eventResult.data));
     if (eventResult.status === 200) {
       navigate("/events");
     }

@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { addEvent } from "../services/api";
+import { useDispatch } from "react-redux";
+import { addEventReducer } from "../redux/slices/eventsSlice";
 
 export default function EventAddForm() {
   const navigate = useNavigate();
@@ -14,6 +16,7 @@ export default function EventAddForm() {
     nbParticipants: 0,
     like: 0,
   });
+  const dispatch = useDispatch();
 
   const onValueChange = (e) => {
     setEventItem({ ...eventItem, [e.target.name]: e.target.value });
@@ -24,6 +27,7 @@ export default function EventAddForm() {
 
   const addNewEvent = async () => {
     const eventResult = await addEvent(eventItem);
+    dispatch(addEventReducer(eventResult.data));
     if (eventResult.status === 201) {
       navigate("/events");
     }

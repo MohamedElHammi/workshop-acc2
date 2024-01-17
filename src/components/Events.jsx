@@ -2,20 +2,15 @@ import React, { useEffect, useState } from "react";
 import Event from "./Event";
 import Row from "react-bootstrap/Row";
 import Alert from "react-bootstrap/Alert";
-import { deleteEvent, getallEvents } from "../services/api";
+import { deleteEvent } from "../services/api";
+import { useSelector, useDispatch } from "react-redux";
+import { deleteEventReducer, selectEvents } from "../redux/slices/eventsSlice";
 
 export default function Events() {
-  const [eventList, setEventList] = useState([]);
   const [isWelcome, setIsWelcome] = useState(true);
   const [isShowBuyAlert, setIsShowBuyAlert] = useState(false);
-
-  useEffect(() => {
-    const fetchEvents = async () => {
-      const eventsResult = await getallEvents();
-      setEventList(eventsResult.data);
-    };
-    fetchEvents();
-  }, []);
+  const [eventList] = useSelector(selectEvents);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const isWelcomeTimeout = setTimeout(() => {
@@ -36,7 +31,7 @@ export default function Events() {
 
   const handleDelete = async (eventId) => {
     await deleteEvent(eventId);
-    setEventList(eventList.filter((eventItem) => eventItem.id !== eventId));
+    dispatch(deleteEventReducer(eventId));
   };
 
   return (

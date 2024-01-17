@@ -3,9 +3,12 @@ import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import { Link, NavLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { increment } from "../redux/slices/wishlistSlice";
 
 export default function Event(props) {
   const [event, setEvent] = useState(props.event);
+  const dispatch = useDispatch();
 
   const handleLike = () => {
     setEvent((eventPrev) => ({
@@ -21,6 +24,10 @@ export default function Event(props) {
       nbParticipants: eventPrev.nbParticipants + 1,
       nbTickets: eventPrev.nbTickets - 1,
     }));
+  };
+
+  const addToWishlist = (eventItem) => {
+    dispatch(increment(eventItem));
   };
 
   return (
@@ -60,6 +67,13 @@ export default function Event(props) {
           </Button>
           <Button variant="danger" onClick={() => props.onDelete(event.id)}>
             Delete
+          </Button>
+          <Button
+            variant="success"
+            className="mx-5"
+            onClick={() => addToWishlist(props.event)}
+          >
+            ADD TO WISHLIST +
           </Button>
         </Card.Body>
       </Card>
