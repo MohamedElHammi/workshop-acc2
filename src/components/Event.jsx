@@ -9,18 +9,18 @@ export default function Event(props) {
   const handleLike = () => {
     setEvent((eventPrev) => ({
       ...eventPrev,
-      like: eventPrev.like ? 0 : 1,
+      like: !eventPrev.like,
     }));
   };
 
-  const handleBuy  = () => {
+  const handleBuy = () => {
     props.showBuyAlert();
     setEvent((eventPrev) => ({
-        ...eventPrev,
-        nbParticipants: eventPrev.nbParticipants + 1,
-        nbTickets: eventPrev.nbTickets - 1,
-      }));
-  }
+      ...eventPrev,
+      nbParticipants: eventPrev.nbParticipants + 1,
+      nbTickets: eventPrev.nbTickets - 1,
+    }));
+  };
 
   return (
     <Col style={{ width: "20%" }} className="m-2">
@@ -28,24 +28,22 @@ export default function Event(props) {
         <Card.Img
           variant="top"
           style={{ height: 400 }}
-          src={`/images/${!!event.nbTickets ? event.img : 'sold_out.png'}`}
+          src={`/images/${!!event.nbTickets ? event.img : "sold_out.png"}`}
         />
         <Card.Body>
           <Card.Title>{event.name}</Card.Title>
           <Card.Text>Price : {event.price}</Card.Text>
           <Card.Text>Number of tickets : {event.nbTickets}</Card.Text>
           <Card.Text>Number of participants : {event.nbParticipants}</Card.Text>
-          <Card.Text>Like : {event.like}</Card.Text>
-          <Button variant="info" onClick={handleLike} className="mx-5">
-            Like
+          <Button variant="info" onClick={handleLike}>
+            {event.like ? "Dislike" : "Like"}
           </Button>
           <Button
             variant="primary"
             onClick={handleBuy}
             disabled={!!event.nbTickets ? false : true}
-            className="mx-5"
           >
-            Buy
+            Book an event
           </Button>
         </Card.Body>
       </Card>
