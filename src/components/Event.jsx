@@ -10,7 +10,7 @@ export default function Event(props) {
   const handleLike = () => {
     setEvent((eventPrev) => ({
       ...eventPrev,
-      like: eventPrev.like ? 0 : 1,
+      like: !eventPrev.like,
     }));
   };
 
@@ -40,15 +40,14 @@ export default function Event(props) {
           <Card.Text>Number of participants : {event.nbParticipants}</Card.Text>
           <Card.Text>Like : {event.like}</Card.Text>
           <Button variant="info" onClick={handleLike} className="mx-5">
-            Like
+            {event.like ? "Dislike" : "Like"}
           </Button>
           <Button
             variant="primary"
             onClick={handleBuy}
             disabled={!!event.nbTickets ? false : true}
-            className="mx-5"
           >
-            Buy
+            Book an event
           </Button>
         </Card.Body>
       </Card>
