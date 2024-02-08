@@ -40,14 +40,6 @@ export default function EventDetails() {
               <p style={{ marginLeft: "50px" }}>{event.price} DT</p>
             </Col>
           </Row>
-          <Row>
-            <Col md={12}>
-              <h5>Likes</h5>
-            </Col>
-            <Col>
-              <p style={{ marginLeft: "50px" }}>{event.like}</p>
-            </Col>
-          </Row>
         </Col>
       </Row>
     </Container>
