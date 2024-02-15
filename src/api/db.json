@@ -8,7 +8,7 @@
       "price": 30,
       "nbTickets": 10,
       "nbParticipants": 10,
-      "like": 0
+      "like": false
     },
     {
       "id": 2,
@@ -18,7 +18,7 @@
       "price": 15,
       "nbTickets": 4,
       "nbParticipants": 30,
-      "like": 0
+      "like": false
     }
   ]
 }

@@ -43,7 +43,7 @@ export default function Events() {
     <div>
       {isWelcome && (
         <Alert style={{ width: "70%", marginBottom: 40 }} variant="success">
-          Hey welcome to the Shop
+          Hey welcome to Esprit Events
         </Alert>
       )}
       <Row xs={1} md={4} className="g-4">
@@ -58,7 +58,7 @@ export default function Events() {
       </Row>
       {isShowBuyAlert && (
         <Alert style={{ width: "70%", marginTop: 20 }} variant="primary">
-          You bought an Item
+          You have booked an event
         </Alert>
       )}
     </div>
