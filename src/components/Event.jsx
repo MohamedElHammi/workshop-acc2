@@ -49,7 +49,7 @@ export default function Event(props) {
           >
             Book an event
           </Button>
-          <Button variant="success" className="mx-5">
+          <Button variant="success">
             <Link
               to={`/events/update/${event.id}`}
               style={{ textDecoration: "none", color: "white" }}
@@ -57,7 +57,11 @@ export default function Event(props) {
               Update
             </Link>
           </Button>
-          <Button variant="danger" onClick={() => props.onDelete(event.id)}>
+          <Button
+            variant="danger"
+            onClick={() => props.onDelete(event.id)}
+            className="mx-5"
+          >
             Delete
           </Button>
         </Card.Body>
