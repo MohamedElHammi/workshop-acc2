@@ -13,7 +13,7 @@ export default function Event(props) {
   const handleLike = () => {
     setEvent((eventPrev) => ({
       ...eventPrev,
-      like: eventPrev.like ? 0 : 1,
+      like: !eventPrev.like,
     }));
   };
 
@@ -45,9 +45,8 @@ export default function Event(props) {
           <Card.Text>Price : {event.price}</Card.Text>
           <Card.Text>Number of tickets : {event.nbTickets}</Card.Text>
           <Card.Text>Number of participants : {event.nbParticipants}</Card.Text>
-          <Card.Text>Like : {event.like}</Card.Text>
-          <Button variant="info" onClick={handleLike} className="mx-5">
-            Like
+          <Button variant="info" onClick={handleLike}>
+            {event.like ? "Dislike" : "Like"}
           </Button>
           <Button
             variant="primary"
@@ -55,9 +54,9 @@ export default function Event(props) {
             disabled={!!event.nbTickets ? false : true}
             className="mx-5"
           >
-            Buy
+            Book an event
           </Button>
-          <Button variant="success" className="mx-5">
+          <Button variant="success">
             <Link
               to={`/events/update/${event.id}`}
               style={{ textDecoration: "none", color: "white" }}
@@ -65,14 +64,14 @@ export default function Event(props) {
               Update
             </Link>
           </Button>
-          <Button variant="danger" onClick={() => props.onDelete(event.id)}>
+          <Button
+            variant="danger"
+            className="mx-5"
+            onClick={() => props.onDelete(event.id)}
+          >
             Delete
           </Button>
-          <Button
-            variant="success"
-            className="mx-5"
-            onClick={() => addToWishlist(props.event)}
-          >
+          <Button variant="success" onClick={() => addToWishlist(props.event)}>
             ADD TO WISHLIST +
           </Button>
         </Card.Body>

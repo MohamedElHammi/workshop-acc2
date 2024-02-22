@@ -14,7 +14,7 @@ export default function EventAddForm() {
     price: 0,
     nbTickets: 0,
     nbParticipants: 0,
-    like: 0,
+    like: false,
   });
   const dispatch = useDispatch();
 

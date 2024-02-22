@@ -15,7 +15,7 @@ export default function EventUpdateForm() {
     price: 0,
     nbTickets: 0,
     nbParticipants: 0,
-    like: 0,
+    like: false,
   });
   const dispatch = useDispatch();
 
@@ -44,7 +44,7 @@ export default function EventUpdateForm() {
 
   return (
     <Container style={{ marginTop: "30px" }}>
-      <h2>Add a new Event to your Event List</h2>
+      <h2>Modify {eventItem.name}</h2>
       <Form>
         <Form.Group className="mb-3">
           <Form.Label>Name</Form.Label>
