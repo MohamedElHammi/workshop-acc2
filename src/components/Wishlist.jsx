@@ -66,8 +66,9 @@ export default function Wishlist() {
                               <input
                                 className="nbParticipants fw-bold text-black def-number-input number-input safari_only"
                                 min={0}
-                                defaultValue={item.nbParticipants}
+                                value={item.nbParticipants}
                                 type="number"
+                                readOnly
                               />
                               <button
                                 className="AddItem"
